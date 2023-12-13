@@ -1,0 +1,31 @@
+﻿@page
+@model RazorPagesMovie.Pages.ERP.MemoModel
+@{
+    ViewData["Title"] = "Memo Details";
+}
+
+<h1>Memo Details</h1>
+
+<a asp-page="/ERP/Search" class="btn btn-primary">Back to Search</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Line</th>
+            <th>Memo</th>
+            <!-- Add more columns as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MemoList)
+        {
+            <tr>
+                <td>@item.Pmp03</td>
+                <td>@item.Pmp04</td>
+                <td>@item.Pmp05</td>
+                <!-- Display more columns as needed -->
+            </tr>
+        }
+    </tbody>
+</table>

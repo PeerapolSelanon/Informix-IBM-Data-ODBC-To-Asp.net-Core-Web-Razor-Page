@@ -1,0 +1,63 @@
+﻿@page
+@model RazorPagesMovie.Pages.ERP.SearchModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search Page</h1>
+
+<form method="get">
+    <div class="form-group">
+        <label for="searchInput">P/R No#:</label>
+        <input type="text" class="form-control" id="searchInput" name="searchTerm" />
+    </div>
+
+    <div class="form-group">
+        <label for="itemInput">Item No#:</label>
+        <input type="text" class="form-control" id="itemInput" name="searchItem" />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (Model.Results != null && Model.Results.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>P/R NO#</th>
+                <th>P/O Date</th>
+                <th>Item NO#</th>
+                <th>Description</th>
+                <th>InClu Tax Original</th>
+                <th>Memo</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Results)
+            {
+                <tr>
+                    <td>@item.Column1</td>
+                    <td>@item.Column2</td>
+                    <td>@item.Column3</td>
+                    <td>@item.Column4</td>
+                    <td>@item.Column5</td>
+                    <td>
+                        <button onclick="viewMemo('@item.Column1')">View Memo</button>
+                    </td>
+                    <!-- Display more columns as needed -->
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+        function viewMemo(id) {
+            window.location.href = '/ERP/Memo?id=' + id;
+        }
+    </script>
+}
+else if (Model.Results != null && !Model.Results.Any())
+{
+    <p>No results found.</p>
+}
